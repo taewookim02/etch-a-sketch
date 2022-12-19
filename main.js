@@ -10,7 +10,7 @@ for (let row = 0; row < 16; row++) {
 }
 
 // Selecting grid-cells and addEventListener
-const gridCellArray = document.querySelectorAll(".grid-cell");
+let gridCellArray = document.querySelectorAll(".grid-cell");
 gridCellArray.forEach((cell) => {
   cell.addEventListener("mouseenter", (e) => {
     cell.style.backgroundColor = "#333";
@@ -31,16 +31,39 @@ function validateUserInput(userInput) {
   return true;
 }
 
+function resetGrid(userInput) {
+  gridContainer.innerHTML = "";
+  for (let i = 0; i < userInput; i++) {
+    for (let j = 0; j < userInput; j++) {
+      const cell = document.createElement("div");
+      cell.setAttribute("class", "grid-cell");
+      gridContainer.appendChild(cell);
+    }
+  }
+  gridContainer.style.gridTemplateRows = `repeat(${userInput}, 1fr)`;
+  gridContainer.style.gridTemplateColumns = `repeat(${userInput}, 1fr)`;
+}
+
+function addEventListenerToGridCells(cellArray) {
+  cellArray.forEach((cell) => {
+    cell.addEventListener(
+      "mouseenter",
+      (e) => (cell.style.backgroundColor = "#333")
+    );
+  });
+}
+
 // Add a functionality that is used to configure the number of cells
 const button = document.querySelector(".button");
 // Use prompt to get the value
 button.addEventListener("click", (e) => {
   const userInput = +prompt("How many squares per side?\n(Maximum: 100)");
-
   // returns true if number is valid
   if (validateUserInput(userInput)) {
-    // reset the grid
+    resetGrid(userInput);
+    gridCellArray = document.querySelectorAll(".grid-cell");
+    addEventListenerToGridCells(gridCellArray);
+  } else {
+    alert("Enter a valid number from 1~100");
   }
 });
-
-function resetGrid(userInput) {}
