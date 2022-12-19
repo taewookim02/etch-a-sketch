@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  height: 100vh;
+  background-color: #aaa;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-rows: repeat(16, 1fr);
+  grid-template-columns: repeat(16, 1fr);
+  width: 600px;
+  height: 600px;
+  background-color: #fff;
+}
+
+/* .grid-container div:hover {
+  background-color: black;
+} */
