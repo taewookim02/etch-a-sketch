@@ -13,10 +13,34 @@ for (let row = 0; row < 16; row++) {
 const gridCellArray = document.querySelectorAll(".grid-cell");
 gridCellArray.forEach((cell) => {
   cell.addEventListener("mouseenter", (e) => {
-    cell.style.backgroundColor = "#000";
+    cell.style.backgroundColor = "#333";
   });
 });
 
+function validateUserInput(userInput) {
+  // typeof number
+  if (
+    typeof userInput !== "number" ||
+    Number.isNaN(userInput) ||
+    typeof userInput === "undefined"
+  )
+    return false;
+  // below 100, and positive number
+  if (userInput > 100 || userInput < 1) return false;
+
+  return true;
+}
+
 // Add a functionality that is used to configure the number of cells
 const button = document.querySelector(".button");
-// Limit the number of cells to 100
+// Use prompt to get the value
+button.addEventListener("click", (e) => {
+  const userInput = +prompt("How many squares per side?\n(Maximum: 100)");
+
+  // returns true if number is valid
+  if (validateUserInput(userInput)) {
+    // reset the grid
+  }
+});
+
+function resetGrid(userInput) {}
